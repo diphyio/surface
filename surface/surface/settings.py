@@ -125,11 +125,16 @@ if ENV_VAR('SURF_DATABASE_USER', default=None):
 if ENV_VAR('SURF_DATABASE_PASSWORD', default=None):
     DATABASES['default']['PASSWORD'] = ENV_VAR('SURF_DATABASE_PASSWORD')
 
-if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
-    if 'TEST' not in DATABASES['default']:
-        DATABASES['default']['TEST'] = {}
-    DATABASES['default']['TEST']['CHARSET'] = 'utf8mb4'
-    DATABASES['default']['TEST']['COLLATION'] = 'utf8mb4_general_ci'
+DATABASES = {
+    'default': {
+        'ENGINE': ENV_VAR('DATABASE_ENGINE', default='NOT_THIS_ONE'), # 'django.db.backends.postgresql_psycopg2',
+        'NAME': ENV_VAR('DATABASE_NAME', default='NOT_THIS_ONE'),
+        'USER': ENV_VAR('DATABASE_USER', default='NOT_THIS_ONE'),
+        'PASSWORD': ENV_VAR('DATABASE_PASS', default='NOT_THIS_ONE'),
+        'HOST': ENV_VAR('DATABASE_HOST', default='NOT_THIS_ONE'),
+        'PORT': ENV_VAR('DATABASE_PORT', default='NOT_THIS_ONE')
+    }
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/

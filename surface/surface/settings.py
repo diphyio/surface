@@ -186,8 +186,21 @@ AVZONE = ENV_VAR('SURF_AVZONE', default='dev')
 DATABASE_LOCKS_STATUS_FILE = None
 DATABASE_LOCKS_ENABLED = False
 
-SURFACE_LINKS_ITEMS = None
-SURFACE_MENU_ITEMS = None
+SURFACE_MENU_ITEMS = [
+    {
+        'label': ('Administration'), 'icon': 'fas fa-building', 'items': [
+            {'name': 'auth.user'},
+            {'name': 'auth.group'}
+        ]
+    }
+]
+SURFACE_LINKS_ITEMS = [
+    {
+        'items': [
+            {'name': 'Example', 'url': 'https://example.com'}
+        ]
+    }
+]
 
 LOGBASECOMMAND_PREFIX = 'surface.command'
 
